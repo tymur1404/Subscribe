@@ -46,6 +46,7 @@ class UserService
 
     public function buySubscription(User $user, array $subscriptionId)
     {
+        // payment process
         $subscription = Subscription::find(reset($subscriptionId));
 
         if ($subscription) {

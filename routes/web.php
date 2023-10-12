@@ -22,7 +22,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::resource('subscription', \App\Http\Controllers\Admin\SubscriptionController::class);
 });
 
-Route::resource('article', \App\Http\Controllers\ArticleController::class);
+Route::resource('article', \App\Providers\ArticleController::class);
 Route::resource('user', \App\Http\Controllers\UserController::class)->only(['show', 'edit', 'update']);
 
 Route::get('/user/{user}/subscription', [\App\Http\Controllers\UserController::class, 'change_subscription'])->name('user.change_subscription');
