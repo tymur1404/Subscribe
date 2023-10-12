@@ -27,10 +27,10 @@ class UserController extends Controller
         $data = $request->validated();
 
         if (UserFacade::buySubscription($user, $data)) {
-            return redirect()->back()->with('success', 'The purchase was successful');
-        } else {
-            return redirect()->back()->with('error', 'Subscription not found');
+            return redirect()->back()->with('success_subscription_update', 'The purchase was successful');
         }
+
+        return redirect()->back()->with('error_subscription_update', 'Subscription not found');
     }
 
     public function change_subscription(User $user): View

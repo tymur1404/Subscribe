@@ -14,10 +14,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|required|string',
-            'price' => 'sometimes|required|numeric|between:0.01,99999.99',
-            'available_publications' => 'sometimes|required|integer|min:1',
-            'active' => 'sometimes|boolean',
+            'subscription_id' => 'required|exists:subscriptions,id'
         ];
     }
 

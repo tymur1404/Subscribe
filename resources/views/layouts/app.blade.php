@@ -27,8 +27,10 @@
                             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                                 <div class="navbar-nav">
                                     <a class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
-                                    <a class="nav-item nav-link {{ request()->is('article*') ? 'active' : '' }}" href="{{ route('article.index') }}">Articles</a>
-                                    <a class="nav-item nav-link {{ request()->is('user*') ? 'active' : '' }}" href="{{ route('user.show', auth()->user()->id) }}">Profile</a>
+                                    @if (auth()->user())
+                                        <a class="nav-item nav-link {{ request()->is('article*') ? 'active' : '' }}" href="{{ route('article.index') }}">Articles</a>
+                                        <a class="nav-item nav-link {{ request()->is('user*') ? 'active' : '' }}" href="{{ route('user.show', auth()->user()->id) }}">Profile</a>
+                                    @endif
                                     @if (UserFacade::isAdmin())
                                          <a class="nav-item nav-link" href="{{ route('subscription.index') }}">Admin Panel</a>
                                     @endif

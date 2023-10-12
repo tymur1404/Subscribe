@@ -11,9 +11,14 @@
                             {{ 'Subscriptions' }}
                         </h4>
                     </div>
-                    @if (session('success_subscription_create'))
+                    @if (session('success_subscription_update'))
                         <div class="alert alert-success">
-                            {{ session('success_subscription_create') }}
+                            {{ session('success_subscription_update') }}
+                        </div>
+                    @endif
+                    @if (session('error_subscription_update'))
+                        <div class="alert alert-success">
+                            {{ session('error_subscription_update') }}
                         </div>
                     @endif
                     <table id="userTable" class="table table-striped">
@@ -39,14 +44,15 @@
                                                type="checkbox"
                                                id="flexSwitchCheckDefault"
                                                disabled
-                                            {{ $subscription->active ? 'checked' : '' }}>
+                                            {{ $user->subscription->id == $subscription->id ? 'checked' : '' }}>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-8 offset-md-4 {{ $user->subscription->id === $subscription->id ? 'd-none' : ''}}">
-                                        <form action="{{ route('user.update', $subscription->id) }}" method="POST">
+                                        <form action="{{ route('user.update', $user->id) }}" method="POST">
                                             @csrf
                                             @method('patch')
+                                            <input type="hidden" name="subscription_id" value="{{ $subscription->id }}">
                                             <button type="submit" class="btn btn-primary">
                                                 {{ __('Buy') }}
                                             </button>
